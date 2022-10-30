@@ -1,0 +1,40 @@
+[System]
+Name='s5_10_GUI'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='数学成绩'
+Range=[0 100]
+NumMFs=2
+MF1='差':'trapmf',[0 0 60 80]
+MF2='好':'trapmf',[60 80 100 100]
+
+[Input2]
+Name='身高'
+Range=[0 10]
+NumMFs=2
+MF1='正常':'trimf',[0 1 5]
+MF2='高':'trapmf',[1 5 10 10]
+
+[Output1]
+Name='通过率'
+Range=[0 100]
+NumMFs=3
+MF1='低':'trimf',[0 30 50]
+MF2='正常':'trimf',[30 50 80]
+MF3='高':'trimf',[50 80 100]
+
+[Rules]
+1 2, 3 (1) : 1
+2 2, 1 (1) : 1
+2 1, 2 (1) : 1
+1 1, 2 (1) : 1
